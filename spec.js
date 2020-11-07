@@ -64,3 +64,14 @@ describe("CUSTOMER-ORDER - TESTING ALL VALID ORDERS", () => {
     expect(actual).to.equal("Order is valid");
   });
 });
+
+describe("CUSTOMER ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED IS EXCEEDS CASSETTE CAPACITY", () => {
+  it("If the customer request £20000 in £5 notes this will excess capacity of the cassette", () => {
+    const order = [
+      ["cassettes", 1],
+      [5, 20000]
+    ];
+    const actual = customerOrder(order);
+    expect(actual).to.equal("The total value is too high requested exceeds capacity of 2000 notes");
+  });
+});
