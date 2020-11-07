@@ -1,15 +1,16 @@
 const arr = [
-    // ["cassettes", 4],
+    ["cassettes", 4],
     [5, 10000],
     [10, 20000],
     [20, 40000],
-    [501, 100000],
+    [50, 100000],
   ];
   
   function customerOrder(arr) {
     let cassettes;
     if (arr[0][0] === "cassettes") {
       cassettes = arr[0][1];
+      arr = arr.slice(1);
     } else {
       cassettes = 4;
     }
