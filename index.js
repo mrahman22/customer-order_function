@@ -37,5 +37,7 @@ const arr = [
     }
   }
   
-  console.log(customerOrder(arr));
+//   customerOrder(arr);
   
+
+  module.exports = customerOrder
