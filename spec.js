@@ -94,10 +94,19 @@ describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED IS EXCEED
 });
 
 describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED IS TOO LOW TO FILL A CASSETTE", () => {
-  it("If the customer request £20000 in £5 notes this will exceed the capacity of the cassette", () => {
+  it("If the customer request £20000 in £5 notes this is too low to fill the capacity of the cassette", () => {
     const order = [
       ["cassettes", 1],
       [5, 5000]
+    ];
+    const actual = customerOrder(order);
+    expect(actual).to.equal('The total value requested is too low, a cassesste can take 2000 notes');
+  });
+  it("If the customer request £10000 in £10 notes this is too low to fill the capacity of the cassette", () => {
+    const order = [
+      ["cassettes", 2],
+      [5, 10000],
+      [10, 10000]
     ];
     const actual = customerOrder(order);
     expect(actual).to.equal('The total value requested is too low, a cassesste can take 2000 notes');
