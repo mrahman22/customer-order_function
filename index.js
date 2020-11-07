@@ -23,10 +23,10 @@
           return 'Please input a valid note';
       }
       if (arr[i][1] / arr[i][0] > 2000) {
-        return "The total value is too high requested exceeds capacity of 2000 notes";
+        return "The total value is too high requested exceeds the capacity of 2000 notes";
       }
       if (arr[i][1] / arr[i][0] < 2000) {
-        return "The the total value is too low, a cassesste needs to filled to 2000 notes";
+        return "The total value requested is too low, a cassesste can take 2000 notes";
       }
       if (arr[i][1] / arr[i][0] === 2000) {
         order.push(arr[i]);

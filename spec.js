@@ -65,13 +65,48 @@ describe("CUSTOMER-ORDER - TESTING ALL VALID ORDERS", () => {
   });
 });
 
-describe("CUSTOMER ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED IS EXCEEDS CASSETTE CAPACITY", () => {
-  it("If the customer request £20000 in £5 notes this will excess capacity of the cassette", () => {
+describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED IS EXCEEDS CASSETTE CAPACITY", () => {
+  it("If the customer request £20000 in £5 notes this will exceed the capacity of the cassette", () => {
     const order = [
       ["cassettes", 1],
       [5, 20000]
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal("The total value is too high requested exceeds capacity of 2000 notes");
+    expect(actual).to.equal("The total value is too high requested exceeds the capacity of 2000 notes");
+  });
+  it("If the customer request £40000 in £10 notes this will excess capacity of the cassette", () => {
+    const order = [
+      ["cassettes", 1],
+      [10, 40000]
+    ];
+    const actual = customerOrder(order);
+    expect(actual).to.equal("The total value is too high requested exceeds the capacity of 2000 notes");
+  });
+  it("If the customer request £60000 in £20 notes this will exceed the capacity of the cassette", () => {
+    const order = [
+      ["cassettes", 2],
+      [5, 10000],
+      [20, 60000]
+    ];
+    const actual = customerOrder(order);
+    expect(actual).to.equal("The total value is too high requested exceeds the capacity of 2000 notes");
   });
 });
+
+describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED IS TOO LOW TO FILL A CASSETTE", () => {
+  it("If the customer request £20000 in £5 notes this will exceed the capacity of the cassette", () => {
+    const order = [
+      ["cassettes", 1],
+      [5, 5000]
+    ];
+    const actual = customerOrder(order);
+    expect(actual).to.equal('The total value requested is too low, a cassesste can take 2000 notes');
+  });
+});
+
+
+
+
+
+
+
