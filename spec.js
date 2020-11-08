@@ -123,6 +123,38 @@ describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED IS TOO LO
   });
 });
 
+describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE INVALID NOTE HAS BEEN REQUESTED", () => {
+  it("If the customer requests £3 for a cassette, the function will throw an error as this is an invalid note", () => {
+    const order = [
+      ["cassettes", 1],
+      [3, 10000]
+    ];
+    const actual = customerOrder(order);
+    expect(actual).to.equal('<<<<< ERROR, Please input a valid note');
+  });
+  it("If the customer requests £8 for a cassette, the function will throw an error as this is an invalid note", () => {
+    const order = [
+      ["cassettes", 4],
+      [5, 10000],
+      [8, 20000],
+      [20, 40000],
+      [50, 80000]
+    ];
+    const actual = customerOrder(order);
+    expect(actual).to.equal('<<<<< ERROR, Please input a valid note');
+  });
+  it("If the customer requests £15 for a cassette, the function will throw an error as this is an invalid note", () => {
+    const order = [
+      [5, 10000],
+      [10, 20000],
+      [15, 40000],
+      [50, 80000]
+    ];
+    const actual = customerOrder(order);
+    expect(actual).to.equal('<<<<< ERROR, Please input a valid note');
+  });
+});
+
 
 
 

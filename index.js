@@ -16,7 +16,7 @@
   
     for (let i = 0; i <= cassettes; i++) {
       if(arr[i][0] !== 5 && arr[i][0] !== 10 && arr[i][0] !== 20 && arr[i][0] !== 50) {
-        return '<<<<< Please input a valid note';
+        return '<<<<< ERROR, Please input a valid note';
       }
       if (arr[i][1] / arr[i][0] > 2000) {
 
