@@ -16,20 +16,20 @@
   
     for (let i = 0; i <= cassettes; i++) {
       if(arr[i][0] !== 5 && arr[i][0] !== 10 && arr[i][0] !== 20 && arr[i][0] !== 50) {
-        return 'Please input a valid note';
+        return '<<<<< Please input a valid note';
       }
       if (arr[i][1] / arr[i][0] > 2000) {
 
-        return "The total value is too high requested exceeds the capacity of 2000 notes";
+        return "<<<< ERROR, The value requested exceeds the capacity of 2000 notes for a cassette";
       }
       if (arr[i][1] / arr[i][0] < 2000) {
-        return "The total value requested is too low, a cassesste can take 2000 notes";
+        return "<<<< ERROR, The total value requested is too low, a cassesste can take upto 2000 notes";
       }
       if (arr[i][1] / arr[i][0] === 2000) {
         order.push(arr[i]);
       }
       if (order.length === cassettes) {
-        return "Order is valid";
+        return "SUCCESS, order will be sent for packaging";
       }
     }
   }
