@@ -69,27 +69,33 @@ describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED EXCEEDS C
   it("If the customer requests £20000 in £5 notes this will exceed the capacity of the cassette", () => {
     const order = [
       ["cassettes", 1],
-      [5, 20000]
+      [5, 20000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal("<<<< ERROR, The value requested exceeds the capacity of 2000 notes for a cassette");
+    expect(actual).to.equal(
+      `<<<< ERROR, The value requested exceeds the capacity of 2000 notes for a cassette by 2000 notes. The total value you can request for £5 is £10000`
+    );
   });
   it("If the customer requests £40000 in £10 notes this will exceed the capacity of the cassette", () => {
     const order = [
       ["cassettes", 1],
-      [10, 40000]
+      [10, 40000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal("<<<< ERROR, The value requested exceeds the capacity of 2000 notes for a cassette");
+    expect(actual).to.equal(
+      `<<<< ERROR, The value requested exceeds the capacity of 2000 notes for a cassette by 2000 notes. The total value you can request for £10 is £20000`
+    );
   });
   it("If the customer request £60000 in £20 notes this will exceed the capacity of the cassette", () => {
     const order = [
       ["cassettes", 2],
       [5, 10000],
-      [20, 60000]
+      [20, 60000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal("<<<< ERROR, The value requested exceeds the capacity of 2000 notes for a cassette");
+    expect(actual).to.equal(
+      `<<<< ERROR, The value requested exceeds the capacity of 2000 notes for a cassette by 1000 notes. The total value you can request for £20 is £40000`
+    );
   });
 });
 
@@ -97,29 +103,35 @@ describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED IS TOO LO
   it("If the customer requests £20000 in £5 notes this is too low to fill the capacity of the cassette", () => {
     const order = [
       ["cassettes", 1],
-      [5, 5000]
+      [5, 5000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal("<<<< ERROR, The total value requested is too low, a cassesste can take upto 2000 notes");
+    expect(actual).to.equal(
+      "<<<< ERROR, The total value requested is too low, a cassesste can take upto 2000 notes"
+    );
   });
   it("If the customer requests £10000 in £10 notes this is too low to fill the capacity of the cassette", () => {
     const order = [
       ["cassettes", 2],
       [5, 10000],
-      [10, 10000]
+      [10, 10000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal("<<<< ERROR, The total value requested is too low, a cassesste can take upto 2000 notes");
+    expect(actual).to.equal(
+      "<<<< ERROR, The total value requested is too low, a cassesste can take upto 2000 notes"
+    );
   });
   it("If the customer requests £80000 in £50 notes this is too low to fill the capacity of the cassette", () => {
     const order = [
       [5, 10000],
       [10, 20000],
       [20, 40000],
-      [50, 80000]
+      [50, 80000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal("<<<< ERROR, The total value requested is too low, a cassesste can take upto 2000 notes");
+    expect(actual).to.equal(
+      "<<<< ERROR, The total value requested is too low, a cassesste can take upto 2000 notes"
+    );
   });
 });
 
@@ -127,10 +139,12 @@ describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE INVALID NOTE HAS BEEN REQUEST
   it("If the customer requests £3 for a cassette, the function will throw an error as this is an invalid note", () => {
     const order = [
       ["cassettes", 1],
-      [3, 10000]
+      [3, 10000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal('<<<<< ERROR, Please input a valid note');
+    expect(actual).to.equal(
+      `<<<<< ERROR, £3 is not a valid cash note. Only the following cash notes can be accepted; £5, £10, £20 £50.`
+    );
   });
   it("If the customer requests £8 for a cassette, the function will throw an error as this is an invalid note", () => {
     const order = [
@@ -138,26 +152,23 @@ describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE INVALID NOTE HAS BEEN REQUEST
       [5, 10000],
       [8, 20000],
       [20, 40000],
-      [50, 80000]
+      [50, 80000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal('<<<<< ERROR, Please input a valid note');
+    expect(actual).to.equal(
+      `<<<<< ERROR, £8 is not a valid cash note. Only the following cash notes can be accepted; £5, £10, £20 £50.`
+    );
   });
   it("If the customer requests £15 for a cassette, the function will throw an error as this is an invalid note", () => {
     const order = [
       [5, 10000],
       [10, 20000],
       [15, 40000],
-      [50, 80000]
+      [50, 80000],
     ];
     const actual = customerOrder(order);
-    expect(actual).to.equal('<<<<< ERROR, Please input a valid note');
+    expect(actual).to.equal(
+      `<<<<< ERROR, £15 is not a valid cash note. Only the following cash notes can be accepted; £5, £10, £20 £50.`
+    );
   });
 });
-
-
-
-
-
-
-
