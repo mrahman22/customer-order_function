@@ -5,9 +5,13 @@ function customerOrder(arr) {
   let cassette_request;
   let counter = 0;
 
+
+
+  const valid_notes = ['5', '10', '20', '50'];
+
   if (arr[0][0] === "cassettes") {
     cassette_request = arr[0][1]
-    arr = arr.slice(1);
+    arr.shift();
     cassettes = arr.length;
   } else {
     cassette_request = 4
@@ -18,12 +22,7 @@ function customerOrder(arr) {
     cash_value = arr[i][1];
     note_value = arr[i][0];
 
-    if (
-      note_value !== '5' &&
-      note_value !== '10' &&
-      note_value !== '20' &&
-      note_value !== '50'
-    ) {
+    if (!valid_notes.includes(note_value)) {
       const selectedNote = arr[i][0];
       return `<<<<< ERROR, £${selectedNote} is not a valid cash note. Only the following cash notes can be accepted; £5, £10, £20 £50.`;
     }

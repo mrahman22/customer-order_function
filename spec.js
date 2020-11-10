@@ -61,6 +61,32 @@ describe("CUSTOMER-ORDER - TESTING ALL VALID ORDERS", () => {
     const actual = customerOrder(order);
     expect(actual[1]).to.have.string('order valid, send for packing');
   });
+  it("When the customer requests the 2 each of £5 and £10 notes", () => {
+    const order = [
+      ['cassettes', 4],
+      ['5', '20000'],
+      ['10', '40000'],
+    ];
+    const actual = customerOrder(order);
+    expect(actual[1]).to.have.string('order valid, send for packing');
+  });
+  it("When the customer requests the 4 cassettes of £5 notes", () => {
+    const order = [
+      ['cassettes', 4],
+      ['5', '40000'],
+    ];
+    const actual = customerOrder(order);
+    expect(actual[1]).to.have.string('order valid, send for packing');
+  });
+  it("When the customer requests the 1 cassettes of £5 notes and 3 cassettes of £10", () => {
+    const order = [
+      ['cassettes', 4],
+      ['5', '30000'],
+      ['10', '20000']
+    ];
+    const actual = customerOrder(order);
+    expect(actual[1]).to.have.string('order valid, send for packing');
+  });
 });
 
 describe("CUSTOMER-ORDER - TESING ALL ORDERS WHERE THE VALUE REQUESTED EXCEEDS CASSETTE CAPACITY", () => {
